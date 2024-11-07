@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NavBarItem extends StatelessWidget {
-  final Icon unselectedIcon;
-  final Icon selectedIcon;
+  final ImageIcon unselectedIcon;
+  final ImageIcon selectedIcon;
   final String label;
 
   NavBarItem(
