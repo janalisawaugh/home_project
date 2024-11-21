@@ -13,4 +13,8 @@ class Images {
   static const String ramen = 'assets/images/ramen.png';
   static const String strawberry = 'assets/images/strawberry.png';
   static const String taco = 'assets/images/taco.png';
+  static const String appIcon2 = 'assets/images/app_icon.svg';
+  static const String clock2 = 'assets/images/clock.svg';
+  static const String home2 = 'assets/images/home.svg';
+  static const String money = 'assets/images/money.svg';
 }

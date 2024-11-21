@@ -9,14 +9,18 @@ class MenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: menuItem.enabled ? () {} : null,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
+              height: 58,
+              width: 58,
               decoration: BoxDecoration(
-                  color: Colors.grey[300],
+                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(8)),
               padding: const EdgeInsets.all(5),
               child: Image.asset(menuItem.icon, width: 26, height: 26)),
-          SizedBox(height: 5),
+          const SizedBox(height: 5, width: 50),
           Text(menuItem.label, style: TextStyle(fontSize: 12))
         ],
       ),

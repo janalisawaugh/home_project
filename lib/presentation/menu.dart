@@ -11,13 +11,56 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 26),
-      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.all(0),
       child: FutureBuilder<List<MenuItemModel>>(
           future: menuRepository.getMenuItems(),
           builder: (contex, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
+              final menuItems = snapshot.data!;
+              return GridView.builder(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(10),
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 1.0,
+                  crossAxisSpacing: 0.0,
+                  mainAxisSpacing: 0.0,
+                ),
+                itemCount: menuItems.length,
+                itemBuilder: (context, index) {
+                  return Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 58,
+                          width: 58,
+                          decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(8)),
+                          padding: const EdgeInsets.all(5),
+                        ),
+                        SizedBox(height: 5),
+                        Container(
+                          height: 15,
+                          width: 58,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          padding: const EdgeInsets.all(5),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
             } else if (snapshot.hasError) {
               return (Center(child: Text('Error loading')));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -26,13 +69,13 @@ class Menu extends StatelessWidget {
               final menuItems = snapshot.data!;
               return GridView.builder(
                 shrinkWrap: true,
-                padding: EdgeInsets.zero,
+                padding: const EdgeInsets.all(10),
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
+                  crossAxisCount: 4,
                   childAspectRatio: 1.0,
-                  crossAxisSpacing: 0.0,
-                  mainAxisSpacing: 0.0,
+                  crossAxisSpacing: 15.0,
+                  mainAxisSpacing: 15.0,
                 ),
                 itemCount: menuItems.length,
                 itemBuilder: (context, index) {

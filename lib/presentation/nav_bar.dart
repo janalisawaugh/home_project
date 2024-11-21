@@ -16,30 +16,20 @@ class NavBar extends StatefulWidget {
 class _NavBar extends State<NavBar> {
   List<NavBarItem> navBarItems = [
     NavBarItem(
-        unselectedIcon: const ImageIcon(AssetImage(Images.home)),
-        selectedIcon: const ImageIcon(
-          AssetImage(Images.home),
-          color: Colors.blue,
-        ),
+        unselectedIcon: Images.home2,
+        selectedIcon: Images.home2,
         label: 'Home'),
     NavBarItem(
-        unselectedIcon: const ImageIcon(AssetImage(Images.clock)),
-        selectedIcon: const ImageIcon(
-          AssetImage(Images.clock),
-          color: Colors.blue,
-        ),
+        unselectedIcon: Images.clock2,
+        selectedIcon: Images.clock2,
         label: 'Clock'),
     NavBarItem(
-        unselectedIcon: const ImageIcon(AssetImage(Images.salary)),
-        selectedIcon: const ImageIcon(
-          AssetImage(Images.salary),
-          color: Colors.blue,
-        ),
+        unselectedIcon: Images.money,
+        selectedIcon: Images.money,
         label: 'Money'),
     NavBarItem(
-        unselectedIcon: const ImageIcon(AssetImage(Images.appIcon)),
-        selectedIcon:
-            const ImageIcon(AssetImage(Images.appIcon), color: Colors.blue),
+        unselectedIcon: Images.appIcon2,
+        selectedIcon: Images.appIcon2,
         label: 'App'),
   ];
   @override

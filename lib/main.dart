@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:home_project/data/menu_item_repository.dart';
+import 'package:home_project/data/promo_banner_repository.dart';
 import 'package:home_project/presentation/help_appbar.dart';
 import 'package:home_project/presentation/menu.dart';
-import 'package:home_project/presentation/menu_item.dart';
 import 'package:home_project/presentation/nav_bar.dart';
-import 'package:home_project/ui_features/images.dart';
+import 'package:home_project/presentation/promo_banner.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,58 +46,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // List<MenuItem> menuItems = [
-    //   MenuItem(
-    //     icon: Images.diet,
-    //     link: '/page1',
-    //     label: 'Page 1',
-    //     displayOrder: 1,
-    //     enabled: true,
-    //     parent: 0,
-    //   ),
-    //   MenuItem(
-    //     icon: Images.fries,
-    //     link: '/page2',
-    //     label: 'Page 2',
-    //     displayOrder: 2,
-    //     enabled: true,
-    //     parent: 0,
-    //   ),
-    //   MenuItem(
-    //     icon: Images.hamburger,
-    //     link: '/page2',
-    //     label: 'Page 3',
-    //     displayOrder: 3,
-    //     enabled: true,
-    //     parent: 0,
-    //   ),
-    //   MenuItem(
-    //     icon: Images.ramen,
-    //     link: '/page2',
-    //     label: 'Page 4',
-    //     displayOrder: 4,
-    //     enabled: true,
-    //     parent: 0,
-    //   ),
-    //   MenuItem(
-    //     icon: Images.strawberry,
-    //     link: '/page2',
-    //     label: 'Page 5',
-    //     displayOrder: 5,
-    //     enabled: true,
-    //     parent: 0,
-    //   ),
-    //   MenuItem(
-    //     icon: Images.taco,
-    //     link: '/page2',
-    //     label: 'Page 6',
-    //     displayOrder: 6,
-    //     enabled: true,
-    //     parent: 0,
-    //   )
-    // ];
     final menuRepository = MenuRepository();
+    final promoRepository = PromoBannerRepository();
     return Scaffold(
+      backgroundColor: Colors.blue[300],
       appBar: HelpAppbar(),
       bottomNavigationBar: NavBar(
         currentIndex: currentIndex,
@@ -106,15 +58,25 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Hello',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                Menu(menuRepository: menuRepository)
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Hello',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                  PromoBanner(
+                      type: 'internal', promoRepository: promoRepository),
+                  SizedBox(height: 10),
+                  Menu(menuRepository: menuRepository),
+                  SizedBox(height: 10),
+                  PromoBanner(
+                      type: 'external', promoRepository: promoRepository),
+                ],
+              ),
             ),
           ),
         ),
