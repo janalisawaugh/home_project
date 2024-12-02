@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:home_project/domain/promo_banner_model.dart';
+
+import '../../domain/entities/promo_entity.dart';
 
 class Promo extends StatelessWidget {
-  final PromoModel promoModel;
+  final PromoEntity promoEntity;
 
-  Promo({required this.promoModel});
+  const Promo({super.key, required this.promoEntity});
 
   Color getBackgroundColor(String category) {
     switch (category) {
@@ -23,7 +24,7 @@ class Promo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor = getBackgroundColor(promoModel.category);
+    Color backgroundColor = getBackgroundColor(promoEntity.category);
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
       child: Container(
@@ -42,14 +43,14 @@ class Promo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    promoModel.title,
+                    promoEntity.title,
                     style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: Colors.white),
                   ),
                   Text(
-                    promoModel.description,
+                    promoEntity.description,
                     style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
@@ -57,7 +58,7 @@ class Promo extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, promoModel.link);
+                      Navigator.pushNamed(context, promoEntity.link);
                     },
                     child: Container(
                       height: 36,
@@ -68,7 +69,7 @@ class Promo extends StatelessWidget {
                       padding: const EdgeInsets.all(5),
                       child: Center(
                         child: Text(
-                          promoModel.buttonLabel,
+                          promoEntity.buttonLabel,
                           style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
@@ -83,7 +84,7 @@ class Promo extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Image.asset(
-                promoModel.imageUrl,
+                promoEntity.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),

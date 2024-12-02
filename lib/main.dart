@@ -1,22 +1,25 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:home_project/data/promo_banner_repository.dart';
+// import 'package:home_project/data/promo_banner_repository.dart';
 import 'package:home_project/domain/usecases/get_menu_items.dart';
 import 'package:home_project/presentation/cubit/menu_cubit.dart';
 import 'package:home_project/presentation/widgets/menu.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'data/repository/menu_items_remote_repository.dart';
-import 'firebase_options.dart';
+// import 'firebase_options.dart';
+import 'data/repository/promos_remote_repository.dart';
+import 'domain/usecases/get_promos.dart';
+import 'presentation/cubit/promo_cubit.dart';
 import 'presentation/widgets/help_appbar.dart';
 import 'presentation/widgets/nav_bar.dart';
 import 'presentation/widgets/promo_banner.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   runApp(const MyApp());
 }
 
@@ -31,10 +34,17 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BlocProvider(
-          create: (_) => MenuCubit(GetMenuItemsUsecaseImpl(
-              MenuItemsRemoteRepository(FirebaseFirestore.instance))),
-          child: const MyHomePage(title: 'Flutter Demo Home Page')),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+              create: (_) => MenuCubit(
+                  GetMenuItemsUsecaseImpl(MenuItemsRemoteRepository()))),
+          BlocProvider(
+              create: (_) =>
+                  PromoCubit(GetPromosUsecaseImpl(PromosRemoteRepository()))),
+        ],
+        child: const MyHomePage(title: 'Flutter Demo Home Page'),
+      ),
     );
   }
 }
@@ -61,12 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     context.read<MenuCubit>().getMenuItems();
+    context.read<PromoCubit>().getPromos();
   }
 
   @override
   Widget build(BuildContext context) {
     // final menuRepository = MenuRepository();
-    final promoRepository = PromoBannerRepository();
     return Scaffold(
       backgroundColor: Colors.blue[300],
       appBar: HelpAppbar(),
@@ -87,8 +97,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     'Hello',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  PromoBanner(
-                      type: 'internal', promoRepository: promoRepository),
+                  BlocBuilder<PromoCubit, PromoState>(
+                      builder: (context, state) {
+                    return state.when(
+                        loading: () => Container(
+                              height: 144,
+                              width: 328,
+                              decoration:
+                                  BoxDecoration(color: Colors.grey[200]),
+                            ),
+                        loaded: (promos) =>
+                            PromoBanner(type: 'internal', promos: promos),
+                        error: (message) => Center(
+                              child: Text('Error loading'),
+                            ));
+                  }),
                   SizedBox(height: 10),
                   BlocBuilder<MenuCubit, MenuState>(builder: (context, state) {
                     return state.when(
@@ -142,8 +165,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   }),
                   // Menu(menuRepository: menuRepository),
                   SizedBox(height: 10),
-                  PromoBanner(
-                      type: 'external', promoRepository: promoRepository),
+                  BlocBuilder<PromoCubit, PromoState>(
+                      builder: (context, state) {
+                    return state.when(
+                        loading: () => Container(
+                              height: 144,
+                              width: 328,
+                              decoration:
+                                  BoxDecoration(color: Colors.grey[200]),
+                            ),
+                        loaded: (promos) =>
+                            PromoBanner(type: 'external', promos: promos),
+                        error: (message) => Center(
+                              child: Text('Error loading'),
+                            ));
+                  }),
                 ],
               ),
             ),
