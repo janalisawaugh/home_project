@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:home_project/presentation/nav_bar_item.dart';
+import 'package:home_project/presentation/widgets/nav_bar_item.dart';
 import 'package:home_project/ui_features/images.dart';
 
 class NavBar extends StatefulWidget {

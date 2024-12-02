@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:home_project/domain/menu_item_model.dart';
+import '../../domain/entities/menu_item_entity.dart';
 
 class MenuItem extends StatelessWidget {
-  final MenuItemModel menuItem;
+  final MenuItemEntity menuItem;
   const MenuItem({Key? key, required this.menuItem}) : super(key: key);
   @override
   Widget build(BuildContext context) {
