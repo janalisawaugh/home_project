@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../domain/usecases/get_promos.dart';
+import '../../domain/usecases/get_promos_usecase.dart';
 import '../../domain/entities/promo_entity.dart';
 
 part 'promo_state.dart';

@@ -23,6 +23,15 @@
         "buttonLabel": "Click here",
         "imageUrl": "assets/images/diet.png",
         "link": "/page2",
+        "type": "internal",
+        "category": "Shopping"
+    },
+    {
+        "title": "Power your life",
+        "description": "Find out about how to click buttons to empower your life.",
+        "buttonLabel": "Click here",
+        "imageUrl": "assets/images/diet.png",
+        "link": "/page2",
         "type": "external",
         "category": "Shopping"
     },

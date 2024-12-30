@@ -46,5 +46,53 @@
         "displayOrder": 6,
         "enabled": true,
         "parent": "/"
+    },
+    {
+        "icon": "assets/images/strawberry.png",
+        "link": "/page1",
+        "label": "Page 5",
+        "displayOrder": 7,
+        "enabled": true,
+        "parent": "/"
+    },
+    {
+        "icon": "assets/images/taco.png",
+        "link": "/page1",
+        "label": "Page 6",
+        "displayOrder": 8,
+        "enabled": true,
+        "parent": "/"
+    },
+    {
+        "icon": "assets/images/diet.png",
+        "link": "/page1",
+        "label": "Page 1",
+        "displayOrder": 9,
+        "enabled": true,
+        "parent": "/"
+    },
+    {
+        "icon": "assets/images/fries.png",
+        "link": "/page1",
+        "label": "Page 2",
+        "displayOrder": 10,
+        "enabled": true,
+        "parent": "/"
+    },
+    {
+        "icon": "assets/images/hamburger.png",
+        "link": "/page1",
+        "label": "Page 3",
+        "displayOrder": 11,
+        "enabled": true,
+        "parent": "/"
+    },
+    {
+        "icon": "assets/images/ramen.png",
+        "link": "/page1",
+        "label": "Page 4",
+        "displayOrder": 12,
+        "enabled": true,
+        "parent": "/"
     }
 ]

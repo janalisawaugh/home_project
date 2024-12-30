@@ -10,6 +10,7 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 360,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
@@ -17,13 +18,13 @@ class Menu extends StatelessWidget {
       padding: const EdgeInsets.all(0),
       child: GridView.builder(
         shrinkWrap: true,
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.fromLTRB(10, 18, 10, 18),
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
           childAspectRatio: 1.0,
-          crossAxisSpacing: 15.0,
-          mainAxisSpacing: 15.0,
+          crossAxisSpacing: 1.0,
+          mainAxisSpacing: 12.0,
         ),
         itemCount: menuItems.length,
         itemBuilder: (context, index) {

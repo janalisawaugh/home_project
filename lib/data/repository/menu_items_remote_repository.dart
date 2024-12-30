@@ -4,23 +4,17 @@ import 'package:flutter/services.dart';
 
 import '../../domain/repository/menu_items_repository.dart';
 import '../menu_item_dto.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MenuItemsRemoteRepository implements MenuItemsRepository {
-  // final FirebaseFirestore _firestore;
+  final AssetBundle bundle;
 
-  // MenuItemsRemoteRepository(this._firestore);
+  MenuItemsRemoteRepository({AssetBundle? bundle})
+      : bundle = bundle ?? rootBundle;
+
   @override
   Stream<List<MenuItemDto>> getMenuData() async* {
     try {
-      // await for (var snapshot
-      //     in _firestore.collection('menuItems').snapshots()) {
-      //   List<MenuItemDto> menuItems = snapshot.docs.map((doc) {
-      //     return MenuItemDto.fromJson(doc.data() as Map<String, dynamic>);
-      //   }).toList();
-      //   yield menuItems;
-      // }
-      String jsonString = await rootBundle.loadString('assets/menu_items.json');
+      String jsonString = await bundle.loadString('assets/menu_items.json');
       List<dynamic> jsonList = json.decode(jsonString);
       List<MenuItemDto> menuItems = jsonList.map((item) {
         return MenuItemDto.fromJson(item);
